@@ -22,7 +22,7 @@ def loadSharedCookies(browser,cookiesPath = "sharedCookies.json"):
 
 
 def get_png(url,filename = "test.png"):
-    """ download png from url """
+    """ download png from url by requests"""
     import requests
     r = requests.get(url)
     with open(filename,"wb") as png:
@@ -193,4 +193,16 @@ class requestsDownload(object):
         r = requests.post(self.ZipUrl, headers = self.headers, data = postdata)
         with open("Vasp.zip","wb") as file:
             file.write(r.content)
+
+    def searchByElement(self,query):
+        """ search by Element;
+            query is a dict like 
+                {"nelements":2,"elements":"Mo-Se"}
+        """
+        s = "https://www.materialsproject.org/apps/materials_explorer/results?query={%s}"
+        query_str = '"nelements":{nelements},"elements":"{elements}"'.format(**query)
+        r = requests.get(s % query_str, headers = self.headers)
+        return r
+
+
 
