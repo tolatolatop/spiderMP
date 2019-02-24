@@ -194,7 +194,7 @@ class requestsDownload(object):
         with open("Vasp.zip","wb") as file:
             file.write(r.content)
 
-    def searchByElement(self,query):
+    def searchByElements(self,query):
         """ search by Element;
             query is a dict like 
                 {"nelements":2,"elements":"Mo-Se"}
@@ -202,8 +202,9 @@ class requestsDownload(object):
         import requests
         s = "https://www.materialsproject.org/apps/materials_explorer/results?query={%s}"
         query_str = '"nelements":{nelements},"elements":"{elements}"'.format(**query)
-        r = requests.get(s % query_str, headers = self.headers)
-        return r
+        s = s % query_str
+        r = requests.get(s , headers = self.headers)
+        return r.content
 
 
 
