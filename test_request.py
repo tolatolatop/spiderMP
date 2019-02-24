@@ -11,3 +11,5 @@ with dataManager.metaDir(os.path.join(config.savepath["root"],"mp-1027692")) as 
 	requests.getDosImage(dos_src)
 	requests.getVaspZip("mp-1027692")
 
+r = requests.searchByElements({"nelements":2,"elements":"Mo-Se"})
+print(r)

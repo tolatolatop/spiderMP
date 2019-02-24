@@ -199,6 +199,7 @@ class requestsDownload(object):
             query is a dict like 
                 {"nelements":2,"elements":"Mo-Se"}
         """
+        import requests
         s = "https://www.materialsproject.org/apps/materials_explorer/results?query={%s}"
         query_str = '"nelements":{nelements},"elements":"{elements}"'.format(**query)
         r = requests.get(s % query_str, headers = self.headers)
